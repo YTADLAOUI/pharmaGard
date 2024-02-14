@@ -35,9 +35,6 @@ const login = () => {
 }
  const styles= StyleSheet.create({
   container: {
-    // position:'relative',
-    // top: -130,
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: "100%",
@@ -53,7 +50,6 @@ const login = () => {
     alignItems: 'center',
     justifyContent: 'center',
     width: "100%",
-    // padding: 20,
     borderRadius: 20,
   },
 
