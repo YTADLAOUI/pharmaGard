@@ -1,27 +1,56 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
 import Login from './src/screens/login'
 import Register from './src/screens/register'
 import ForgetPassword from './src/screens/forgetPassword'
-
+import ResetPassword from './src/screens/resetPassword'
+import Home from './src/screens/home'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+const Stack = createNativeStackNavigator();
 export default function App() {
  return(
   <>
-    <SafeAreaView style={styles.container} >
-      {/* <Login/> */}
-      {/* <Register/> */}
-       <ForgetPassword/>
-    </SafeAreaView>
+      <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#8dbAe6', 
+       
+          },
+          headerTintColor: '#fff',}}
+        name='Login'   component={Login} />
+        <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#8dbAe6', 
+       
+          },
+          headerTintColor: '#fff',}}
+        name='Register'  component={Register} />
+
+        <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#8dbAe6', 
+       
+          },
+          headerTintColor: '#fff',}}
+        name='Forget password'  component={ForgetPassword} />
+        <Stack.Screen 
+        options={{
+          headerStyle: {
+            backgroundColor: '#8dbAe6', 
+       
+          },
+          headerTintColor: '#fff',}}
+        name='Reset Pass'  component={ResetPassword} />
+      <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   </>
  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#8dbAe6',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
 

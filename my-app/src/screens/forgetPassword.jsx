@@ -4,7 +4,7 @@ import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'r
 import InputEmail from '../components/input'
 import ButtonForget from '../components/button'
 
-const forgetPassword = () => {
+const forgetPassword = ({navigation }) => {
   const [email, setEmail] = useState('')
   return (
  <SafeAreaView style={styles.container} >
@@ -19,7 +19,7 @@ const forgetPassword = () => {
     style={styles.input}/>
       <View style={styles.login}>
         <TouchableOpacity>
-          <Text style={styles.forgot}>Go to login → </Text>
+          <Text  onPress={() => navigation.navigate('Login')} style={styles.forgot}>Go to login → </Text>
         </TouchableOpacity>
       </View>
     <ButtonForget title={'Send'}/>

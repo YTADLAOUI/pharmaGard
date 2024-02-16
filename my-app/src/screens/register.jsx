@@ -6,7 +6,7 @@ import InputPassword from '../components/input'
 import InputConfirmPassword from '../components/input'
 import ButtonRegister from '../components/button'
 
-const register = () => {
+const register = ({navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -24,7 +24,7 @@ const register = () => {
       <InputConfirmPassword  placeholder={'confirm password'} secureTextEntry={true} onChangeText={confirmPassword=>setConfirmPassword(confirmPassword)}/>
       <View style={styles.login}>
         <TouchableOpacity>
-          <Text style={styles.forgot}>Go to login → </Text>
+          <Text  onPress={() => navigation.navigate('Login')} style={styles.forgot}>Go to login → </Text>
         </TouchableOpacity>
       </View>
       <ButtonRegister title={'register'}/>

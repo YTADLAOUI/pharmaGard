@@ -2,7 +2,7 @@ import React from 'react'
 import {StyleSheet,Button, View ,SafeAreaView} from 'react-native'
 
 
-const button = ({title}) => {
+const button = ({title,onPress}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -10,7 +10,7 @@ const button = ({title}) => {
         style={styles.title}
         color="#59B4C3"
         title={title || "Button"}
-        onPress={() => console.log('Button pressed')}
+        onPress={onPress}
       />
       </View>
     </SafeAreaView>

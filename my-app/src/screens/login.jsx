@@ -2,11 +2,24 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Input from '../components/input'
 import ButtonLogin from '../components/button'
-import { StyleSheet,Text,Image, TouchableOpacity,View } from 'react-native';
-const login = () => {
+import { StyleSheet,Text,Image, TouchableOpacity,View, Linking } from 'react-native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const login = ({navigation}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  console.log(email)
+
+  const login = async () => {
+    console.log("first")
+    console.log(email,password)
+    axios.post('http://10.0.2.2:3000/api/login',{email:email,password:password},{'Content-Type': 'application/json'}).then(async (res) => {
+      console.log(res.data)
+      if(res.data.message === 'Invalid credentials') return console.log("Invalid credentials")
+      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.tokenAccess}`
+      navigation.navigate('Home')
+    }).catch((err) => { console.log(err)})
+  
+  }
   return (
     <SafeAreaView  style={styles.container}>
         <Image style={styles.image} source={require('../../assets/pharma.png')} />
@@ -18,15 +31,15 @@ const login = () => {
       <Input onChangeText={password=>setPassword(password)} value={password} placeholder={"Entre votre password"} secureTextEntry={true} />
       <View style={styles.forgotPassword}>
         <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot your password?</Text>
+          <Text  onPress={() => navigation.navigate('Forget password')} style={styles.forgot}>Forgot your password?</Text>
         </TouchableOpacity>
       </View>
       
-      <ButtonLogin/>
+      <ButtonLogin title={'Login'} onPress={()=>navigation.navigate('Home')} />
       <View style={styles.row}>
         <Text style={{color:'#211C6A'}}>Don’t have an account? </Text>
         <TouchableOpacity onPress={() => console.log("onPress sign up")}>
-          <Text style={styles.link}>Sign up</Text>
+          <Text style={styles.link}  onPress={() => navigation.navigate('Register')}>Sign up</Text>
         </TouchableOpacity>
       </View>
       </View>
@@ -35,9 +48,11 @@ const login = () => {
 }
  const styles= StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: "100%",
+    backgroundColor: '#8dbAe6',
   },
   brand:{
     color: "#fff",
@@ -46,7 +61,6 @@ const login = () => {
     marginBottom: 20,
   },
   input:{
-    backgroundColor: '#8dbAe6',
     alignItems: 'center',
     justifyContent: 'center',
     width: "100%",
@@ -65,7 +79,6 @@ const login = () => {
     width: 300,
     height: 200,
     // backgroundColor: "#fff",
-
     // marginBottom: 20,
   },
   forgotPassword: {
