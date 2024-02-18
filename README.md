@@ -15,7 +15,6 @@ To get a local copy up and running, follow these simple steps.
    cd my-app 
    ```
   - nestjs
-    - react-native
    ```bash
    cd pharmaGard
    cd backend
