@@ -4,7 +4,7 @@ import Input from '../components/input'
 import ButtonLogin from '../components/button'
 import { StyleSheet,Text,Image, TouchableOpacity,View, Linking } from 'react-native';
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 const login = ({navigation}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -35,7 +35,7 @@ const login = ({navigation}) => {
         </TouchableOpacity>
       </View>
       
-      <ButtonLogin title={'Login'} onPress={()=>navigation.navigate('Home')} />
+      <ButtonLogin title={'Login'} onPress={login} />
       <View style={styles.row}>
         <Text style={{color:'#211C6A'}}>Don’t have an account? </Text>
         <TouchableOpacity onPress={() => console.log("onPress sign up")}>

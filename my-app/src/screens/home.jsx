@@ -20,19 +20,19 @@ const Home = ({ navigation }) => {
         setMessage(res.data.username);
       } catch (err) {
         console.log(err);
-        // navigation.navigate('Login');
+        navigation.navigate('Login');
       }
     })();
   }, []);
 
-  // Filter pharmacies based on the showEnGuard state
+ 
   const filteredPharmacies = data.filter(pharmacy => showEnGuard ? pharmacy.onGuard : !pharmacy.onGuard);
 
   return (
-    <SafeAreaView>
+    <>
       
       <View style={commonStyles.buttonContainer}>
-        {/* "En Guard" button */}
+       
         <TouchableOpacity
           style={[
             commonStyles.button,
@@ -55,14 +55,13 @@ const Home = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <ScrollView>
-        <View>
+        <ScrollView >
           {filteredPharmacies.map((pharmacy) => (
-            <PharmacyCard key={pharmacy.id} pharmacy={pharmacy} />
+            <PharmacyCard  key={pharmacy.id} pharmacy={pharmacy} />
           ))}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+   
+    </>
   );
 };
 
